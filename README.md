@@ -25,17 +25,17 @@ O objetivo do projeto é apresentar o universo de Infernal Dungeon e demonstrar 
 
 ## Funcionalidades
 
-- Navegação por seções em uma única página
+- Página inicial com apresentação do jogo
 - Seções informativas sobre história, dungeons, máscaras, torres e NPCs
-- Cadastro de usuário com validação de campos
+- Cadastro de usuário
 - Login e logout
-- Loja fictícia com itens de diferentes tipos
-- Carrinho com adição e remoção de itens
-- Finalização de compra fictícia
+- Loja fictícia
+- Carrinho
+- Compra simulada
 - Inventário individual por usuário
-- FAQ com perguntas frequentes
+- FAQ
 - Envio, edição e exclusão de dúvidas
-- Armazenamento dos dados no navegador com LocalStorage
+- Armazenamento com LocalStorage
 
 ## Estrutura do projeto
 
@@ -55,23 +55,18 @@ InfernalDungeon/
 │   └── plano-testes.md
 ├── evidencias/
 │   └── orientacoes-evidencias.md
-├── README.md
-└── netlify.toml
+└── README.md
 ```
 
 ## Como executar
 
-O projeto pode ser aberto diretamente pelo arquivo:
+Para executar o projeto, abra o arquivo:
 
 ```text
 codigo-fonte/index.html
 ```
 
-Também é possível usar uma extensão como Live Server.
-
-## Site publicado
-
-https://exquisite-crepe-ae5df0.netlify.app/
+Também pode ser usado o Live Server no VS Code, se desejado.
 
 ## Repositório
 
@@ -83,4 +78,4 @@ Vídeo de demonstração: será adicionado após a gravação
 
 ## Observações
 
-O projeto não usa backend nem banco de dados real. Os dados de usuários, carrinho, inventário e dúvidas são armazenados no navegador com LocalStorage.
+O projeto não utiliza backend nem banco de dados real. Os dados de cadastro, login, carrinho, inventário e dúvidas são armazenados localmente no navegador usando LocalStorage.

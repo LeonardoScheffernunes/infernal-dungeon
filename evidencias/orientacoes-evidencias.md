@@ -13,6 +13,6 @@ Itens que ainda precisam ser colocados na pasta `evidencias`:
 - Print do envio de dúvida
 - Print da edição de dúvida
 - Print da exclusão de dúvida
-- Print do GitHub
+- Print do repositório GitHub
 - Print do histórico de commits
 - Link do vídeo de demonstração
