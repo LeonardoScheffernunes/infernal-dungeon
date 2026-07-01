@@ -274,6 +274,398 @@ h1 {
   margin: 0;
 }
 
+.content-section {
+  scroll-margin-top: 92px;
+  padding: 4.5rem 0;
+  border-top: 1px solid rgba(213, 168, 75, 0.16);
+}
+
+.section-heading {
+  max-width: 760px;
+  margin-bottom: 2rem;
+}
+
+.section-heading h2 {
+  margin-bottom: 0.75rem;
+  color: var(--text);
+  font-size: clamp(2rem, 5vw, 3.8rem);
+  line-height: 1;
+}
+
+.section-heading p:not(.eyebrow) {
+  color: var(--muted);
+  font-size: 1.05rem;
+}
+
+.feature-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.three-columns {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.four-columns {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.info-card,
+.store-card,
+.inventory-card,
+.question-card,
+.account-status,
+.cart-panel,
+.form-card,
+.lore-note,
+.faq-list details {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: linear-gradient(180deg, rgba(29, 23, 25, 0.94), rgba(13, 10, 11, 0.96));
+  box-shadow: 0 14px 44px rgba(0, 0, 0, 0.24);
+}
+
+.info-card,
+.store-card,
+.inventory-card,
+.question-card,
+.account-status,
+.form-card,
+.lore-note {
+  padding: 1.25rem;
+}
+
+.info-card h3,
+.store-card h3,
+.inventory-card h3,
+.question-card h3,
+.form-card h3,
+.account-status h3,
+.lore-note h3 {
+  margin-bottom: 0.55rem;
+  color: var(--gold);
+  font-size: 1.25rem;
+}
+
+.info-card p,
+.store-card p,
+.inventory-card p,
+.question-card p,
+.account-status p,
+.lore-note p {
+  margin-bottom: 0;
+  color: var(--muted);
+}
+
+.card-kicker,
+.rarity-badge,
+.type-badge {
+  display: inline-flex;
+  align-items: center;
+  min-height: 24px;
+  margin-bottom: 0.75rem;
+  padding: 0.1rem 0.5rem;
+  border: 1px solid rgba(213, 168, 75, 0.28);
+  border-radius: 999px;
+  color: var(--gold);
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.compact-card {
+  min-height: 160px;
+}
+
+.split-section {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 340px;
+  gap: 1.5rem;
+  align-items: start;
+}
+
+.split-section .section-heading {
+  grid-column: 1 / -1;
+}
+
+.timeline-list {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.timeline-list article {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 1rem;
+  padding: 1rem;
+  border-left: 3px solid var(--blood-bright);
+  background: rgba(20, 16, 18, 0.72);
+}
+
+.timeline-list strong {
+  color: var(--gold);
+}
+
+.timeline-list span {
+  color: var(--muted);
+}
+
+.lore-note {
+  border-color: rgba(211, 58, 47, 0.36);
+  background:
+    linear-gradient(180deg, rgba(54, 15, 18, 0.88), rgba(16, 12, 13, 0.96)),
+    radial-gradient(circle at top right, rgba(211, 58, 47, 0.18), transparent 56%);
+}
+
+.message {
+  min-height: 24px;
+  margin: 0.8rem 0;
+  color: var(--muted);
+}
+
+.message.success {
+  color: #a8d67b;
+}
+
+.message.error {
+  color: #ff8a76;
+}
+
+.shop-layout,
+.support-layout,
+.auth-grid {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.shop-layout {
+  grid-template-columns: minmax(0, 1fr) 340px;
+  align-items: start;
+}
+
+.store-grid,
+.inventory-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.store-card {
+  display: flex;
+  flex-direction: column;
+  min-height: 276px;
+}
+
+.store-card .meta-row,
+.inventory-card .meta-row,
+.question-card .meta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-bottom: 0.85rem;
+}
+
+.store-card .price {
+  margin-top: auto;
+  margin-bottom: 1rem;
+  color: var(--text);
+  font-weight: 700;
+}
+
+.cart-panel {
+  position: sticky;
+  top: 92px;
+  padding: 1rem;
+}
+
+.panel-title-row,
+.cart-total,
+.question-card .card-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.panel-title-row h3,
+.question-list-wrap h3 {
+  margin-bottom: 0;
+  color: var(--gold);
+}
+
+.panel-title-row span {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.cart-items {
+  display: grid;
+  gap: 0.6rem;
+  min-height: 96px;
+  margin: 1rem 0;
+}
+
+.cart-line {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0.75rem;
+  align-items: center;
+  padding: 0.75rem;
+  border: 1px solid rgba(213, 168, 75, 0.16);
+  border-radius: var(--radius);
+  background: rgba(0, 0, 0, 0.18);
+}
+
+.cart-line strong {
+  display: block;
+  color: var(--text);
+  line-height: 1.25;
+}
+
+.cart-line span {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.small-button {
+  min-height: 34px;
+  padding: 0.35rem 0.55rem;
+  border: 1px solid rgba(213, 168, 75, 0.28);
+  border-radius: var(--radius);
+  background: rgba(20, 16, 18, 0.86);
+  color: var(--gold);
+  cursor: pointer;
+}
+
+.danger-button {
+  border-color: rgba(211, 58, 47, 0.44);
+  color: #ff9a8a;
+}
+
+.cart-total {
+  margin: 1rem 0;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(213, 168, 75, 0.18);
+  color: var(--muted);
+}
+
+.cart-total strong {
+  color: var(--gold);
+  text-align: right;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.support-layout {
+  grid-template-columns: minmax(280px, 0.8fr) minmax(0, 1.2fr);
+  align-items: start;
+}
+
+.faq-list {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.faq-list details {
+  padding: 1rem;
+}
+
+.faq-list summary {
+  color: var(--gold);
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.faq-list p {
+  margin: 0.75rem 0 0;
+  color: var(--muted);
+}
+
+.support-panel {
+  display: grid;
+  gap: 1rem;
+}
+
+.form-card {
+  display: grid;
+  gap: 0.65rem;
+}
+
+label {
+  color: var(--gold);
+  font-weight: 700;
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  border: 1px solid rgba(213, 168, 75, 0.28);
+  border-radius: var(--radius);
+  background: rgba(5, 4, 4, 0.74);
+  color: var(--text);
+  outline: none;
+  padding: 0.8rem;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(213, 168, 75, 0.12);
+}
+
+textarea {
+  resize: vertical;
+}
+
+.form-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.question-list-wrap {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.question-list {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.auth-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: start;
+}
+
+.account-status {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.account-status p {
+  margin: 0;
+}
+
+.empty-state {
+  padding: 1rem;
+  border: 1px dashed rgba(213, 168, 75, 0.32);
+  border-radius: var(--radius);
+  color: var(--muted);
+  background: rgba(0, 0, 0, 0.14);
+}
+
+.hidden {
+  display: none !important;
+}
+
 @media (max-width: 960px) {
   .topbar {
     align-items: flex-start;
@@ -294,6 +686,21 @@ h1 {
   .hero-panel {
     max-width: 520px;
   }
+
+  .three-columns,
+  .four-columns,
+  .store-grid,
+  .inventory-grid,
+  .shop-layout,
+  .support-layout,
+  .auth-grid,
+  .split-section {
+    grid-template-columns: 1fr;
+  }
+
+  .cart-panel {
+    position: static;
+  }
 }
 
 @media (max-width: 620px) {
@@ -309,5 +716,15 @@ h1 {
 
   .hero-actions .btn {
     width: 100%;
+  }
+
+  .timeline-list article,
+  .account-status,
+  .panel-title-row,
+  .cart-total,
+  .question-card .card-actions {
+    align-items: stretch;
+    grid-template-columns: 1fr;
+    flex-direction: column;
   }
 }
