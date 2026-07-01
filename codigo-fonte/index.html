@@ -7,21 +7,64 @@
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <header>
-    <nav>
-      <a href="#inicio">Infernal Dungeon</a>
+  <header class="site-header">
+    <nav class="topbar" aria-label="Navegação principal">
+      <a class="brand" href="#inicio" aria-label="Infernal Dungeon - Início">
+        <span class="brand-mark" aria-hidden="true">ID</span>
+        <span>Infernal Dungeon</span>
+      </a>
+
+      <div class="nav-links">
+        <a href="#inicio">Início</a>
+        <a href="#historia">História</a>
+        <a href="#dungeons">Dungeons</a>
+        <a href="#mascaras">Máscaras</a>
+        <a href="#torres">Torres</a>
+        <a href="#npcs">NPCs</a>
+        <a href="#loja">Loja</a>
+        <a href="#inventario">Inventário</a>
+        <a href="#suporte">Suporte</a>
+        <a href="#conta">Conta</a>
+      </div>
+
+      <div class="user-pill" id="headerUserStatus">Visitante</div>
     </nav>
   </header>
 
   <main>
-    <section id="inicio">
-      <h1>Infernal Dungeon</h1>
-      <p>Projeto web em desenvolvimento.</p>
+    <section id="inicio" class="hero-section">
+      <div class="hero-content">
+        <p class="eyebrow">Wiki oficial fictícia</p>
+        <h1>Infernal Dungeon</h1>
+        <p class="hero-text">
+          Domine câmaras esquecidas, fortaleça seu núcleo profano e transforme cada invasão em uma defesa lendária.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#loja">Ver loja</a>
+          <a class="btn btn-secondary" href="#conta">Criar conta</a>
+        </div>
+      </div>
+
+      <div class="hero-panel" aria-label="Resumo do jogo">
+        <div>
+          <span class="metric-value">4</span>
+          <span class="metric-label">classes de itens</span>
+        </div>
+        <div>
+          <span class="metric-value">8</span>
+          <span class="metric-label">ofertas fictícias</span>
+        </div>
+        <div>
+          <span class="metric-value">1</span>
+          <span class="metric-label">núcleo a proteger</span>
+        </div>
+      </div>
     </section>
   </main>
 
-  <footer>
+  <footer class="site-footer">
     <p>Infernal Dungeon - Trabalho Avaliativo Etapa 2</p>
+    <p>Autores: Leonardo Scheffer Nunes e Vinicius Cecatto</p>
   </footer>
 
   <script src="js/app.js"></script>
