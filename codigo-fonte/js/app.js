@@ -4,7 +4,8 @@ const storageKeys = {
   users: "infernalDungeon_users",
   loggedUser: "infernalDungeon_loggedUser",
   cart: "infernalDungeon_cart",
-  inventory: "infernalDungeon_inventory"
+  inventory: "infernalDungeon_inventory",
+  questions: "infernalDungeon_questions"
 };
 
 const storeItems = [
@@ -94,7 +95,16 @@ const elements = {
   cartTotal: document.querySelector("#cartTotal"),
   checkoutButton: document.querySelector("#checkoutButton"),
   inventoryMessage: document.querySelector("#inventoryMessage"),
-  inventoryItems: document.querySelector("#inventoryItems")
+  inventoryItems: document.querySelector("#inventoryItems"),
+  questionForm: document.querySelector("#questionForm"),
+  questionEditId: document.querySelector("#questionEditId"),
+  questionTitle: document.querySelector("#questionTitle"),
+  questionCategory: document.querySelector("#questionCategory"),
+  questionDescription: document.querySelector("#questionDescription"),
+  questionSubmitButton: document.querySelector("#questionSubmitButton"),
+  cancelQuestionEdit: document.querySelector("#cancelQuestionEdit"),
+  questionMessage: document.querySelector("#questionMessage"),
+  questionsList: document.querySelector("#questionsList")
 };
 
 let loggedUser = readStorage(storageKeys.loggedUser, null);
@@ -136,6 +146,14 @@ function saveInventoryMap(inventoryMap) {
   writeStorage(storageKeys.inventory, inventoryMap);
 }
 
+function getQuestionsMap() {
+  return readStorage(storageKeys.questions, {});
+}
+
+function saveQuestionsMap(questionsMap) {
+  writeStorage(storageKeys.questions, questionsMap);
+}
+
 function getCurrentCart() {
   if (!loggedUser) {
     return [];
@@ -174,6 +192,25 @@ function saveCurrentInventory(items) {
   saveInventoryMap(inventoryMap);
 }
 
+function getCurrentQuestions() {
+  if (!loggedUser) {
+    return [];
+  }
+
+  const questionsMap = getQuestionsMap();
+  return questionsMap[loggedUser.email] || [];
+}
+
+function saveCurrentQuestions(questions) {
+  if (!loggedUser) {
+    return;
+  }
+
+  const questionsMap = getQuestionsMap();
+  questionsMap[loggedUser.email] = questions;
+  saveQuestionsMap(questionsMap);
+}
+
 function normalizeEmail(email) {
   return email.trim().toLowerCase();
 }
@@ -189,6 +226,15 @@ function setMessage(element, text, type = "") {
 
   element.textContent = text;
   element.className = `message ${type}`.trim();
+}
+
+function escapeHtml(value) {
+  return String(value)
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
 }
 
 function clearAuthMessages() {
@@ -219,6 +265,7 @@ function renderAuthState() {
   elements.logoutButton.classList.toggle("hidden", !loggedUser);
   renderCart();
   renderInventory();
+  renderQuestions();
 }
 
 function handleRegister(event) {
@@ -400,6 +447,44 @@ function renderInventory() {
   }).join("");
 }
 
+function renderQuestions() {
+  if (!loggedUser) {
+    elements.questionsList.innerHTML = '<p class="empty-state">Faça login para enviar e visualizar suas dúvidas.</p>';
+    resetQuestionForm();
+    return;
+  }
+
+  const questions = getCurrentQuestions();
+
+  if (questions.length === 0) {
+    elements.questionsList.innerHTML = '<p class="empty-state">Você ainda não enviou dúvidas.</p>';
+    return;
+  }
+
+  elements.questionsList.innerHTML = questions.map((question) => {
+    const createdAt = new Date(question.createdAt).toLocaleDateString("pt-BR");
+    const updatedInfo = question.updatedAt
+      ? `<p><strong>Atualizada em:</strong> ${new Date(question.updatedAt).toLocaleDateString("pt-BR")}</p>`
+      : "";
+
+    return `
+      <article class="question-card">
+        <div class="meta-row">
+          <span class="type-badge">${escapeHtml(question.category)}</span>
+          <span class="rarity-badge">Enviada em ${createdAt}</span>
+        </div>
+        <h3>${escapeHtml(question.title)}</h3>
+        <p>${escapeHtml(question.description)}</p>
+        ${updatedInfo}
+        <div class="card-actions">
+          <button class="small-button" type="button" data-edit-question="${question.id}">Editar</button>
+          <button class="small-button danger-button" type="button" data-delete-question="${question.id}">Excluir</button>
+        </div>
+      </article>
+    `;
+  }).join("");
+}
+
 function handleAddToCart(itemId) {
   if (!loggedUser) {
     setMessage(elements.storeMessage, "Faça login antes de adicionar itens ao carrinho.", "error");
@@ -479,6 +564,111 @@ function handleCheckout() {
   setMessage(elements.storeMessage, "Compra fictícia concluída. Os itens foram enviados para o inventário.", "success");
 }
 
+function resetQuestionForm() {
+  elements.questionForm.reset();
+  elements.questionEditId.value = "";
+  elements.questionSubmitButton.textContent = "Enviar dúvida";
+  elements.cancelQuestionEdit.classList.add("hidden");
+}
+
+function handleQuestionSubmit(event) {
+  event.preventDefault();
+
+  if (!loggedUser) {
+    setMessage(elements.questionMessage, "Faça login para enviar dúvidas.", "error");
+    return;
+  }
+
+  const title = elements.questionTitle.value.trim();
+  const category = elements.questionCategory.value;
+  const description = elements.questionDescription.value.trim();
+  const editId = elements.questionEditId.value;
+
+  if (!title || !category || !description) {
+    setMessage(elements.questionMessage, "Preencha título, categoria e descrição.", "error");
+    return;
+  }
+
+  const questions = getCurrentQuestions();
+
+  if (editId) {
+    const questionIndex = questions.findIndex((question) => question.id === editId);
+
+    if (questionIndex === -1) {
+      setMessage(elements.questionMessage, "Dúvida não encontrada para edição.", "error");
+      return;
+    }
+
+    questions[questionIndex] = {
+      ...questions[questionIndex],
+      title,
+      category,
+      description,
+      updatedAt: new Date().toISOString()
+    };
+
+    saveCurrentQuestions(questions);
+    resetQuestionForm();
+    renderQuestions();
+    setMessage(elements.questionMessage, "Dúvida atualizada com sucesso.", "success");
+    return;
+  }
+
+  questions.push({
+    id: `question-${Date.now()}`,
+    title,
+    category,
+    description,
+    createdAt: new Date().toISOString(),
+    updatedAt: null
+  });
+
+  saveCurrentQuestions(questions);
+  resetQuestionForm();
+  renderQuestions();
+  setMessage(elements.questionMessage, "Dúvida enviada com sucesso.", "success");
+}
+
+function handleEditQuestion(questionId) {
+  if (!loggedUser) {
+    setMessage(elements.questionMessage, "Faça login para editar dúvidas.", "error");
+    return;
+  }
+
+  const question = getCurrentQuestions().find((item) => item.id === questionId);
+
+  if (!question) {
+    setMessage(elements.questionMessage, "Dúvida não encontrada.", "error");
+    return;
+  }
+
+  elements.questionEditId.value = question.id;
+  elements.questionTitle.value = question.title;
+  elements.questionCategory.value = question.category;
+  elements.questionDescription.value = question.description;
+  elements.questionSubmitButton.textContent = "Salvar alteração";
+  elements.cancelQuestionEdit.classList.remove("hidden");
+  elements.questionForm.scrollIntoView({ behavior: "smooth", block: "center" });
+  setMessage(elements.questionMessage, "Edite os campos e salve a alteração.", "");
+}
+
+function handleDeleteQuestion(questionId) {
+  if (!loggedUser) {
+    setMessage(elements.questionMessage, "Faça login para excluir dúvidas.", "error");
+    return;
+  }
+
+  const filteredQuestions = getCurrentQuestions().filter((question) => question.id !== questionId);
+  saveCurrentQuestions(filteredQuestions);
+
+  if (elements.questionEditId.value === questionId) {
+    resetQuestionForm();
+  }
+
+  renderQuestions();
+  setMessage(elements.questionMessage, "Dúvida excluída com sucesso.", "success");
+}
+
 function initStore() {
   renderStoreItems();
   renderCart();
@@ -503,6 +693,29 @@ function initStore() {
   elements.checkoutButton.addEventListener("click", handleCheckout);
 }
 
+function initQuestions() {
+  elements.questionForm.addEventListener("submit", handleQuestionSubmit);
+  elements.cancelQuestionEdit.addEventListener("click", () => {
+    resetQuestionForm();
+    setMessage(elements.questionMessage, "Edição cancelada.", "");
+  });
+
+  elements.questionsList.addEventListener("click", (event) => {
+    const editButton = event.target.closest("[data-edit-question]");
+    const deleteButton = event.target.closest("[data-delete-question]");
+
+    if (editButton) {
+      handleEditQuestion(editButton.dataset.editQuestion);
+    }
+
+    if (deleteButton) {
+      handleDeleteQuestion(deleteButton.dataset.deleteQuestion);
+    }
+  });
+
+  renderQuestions();
+}
+
 function initAuth() {
   elements.registerForm.addEventListener("submit", handleRegister);
   elements.loginForm.addEventListener("submit", handleLogin);
@@ -513,3 +726,4 @@ function initAuth() {
 
 initAuth();
 initStore();
+initQuestions();
