@@ -2,15 +2,15 @@
 
 ## Objetivo do sistema
 
-O sistema Infernal Dungeon tem como objetivo apresentar uma wiki/site oficial fictício de um jogo de tower defense com tema de dungeon, reunindo informações sobre história, dungeons, máscaras, torres, NPCs, loja, inventário e suporte.
+Infernal Dungeon apresenta uma wiki/site fictício de um jogo de tower defense com tema de dungeon. A aplicação reúne informações sobre o jogo e permite que o usuário teste um fluxo simples com conta, loja, carrinho, inventário e suporte.
 
 ## Descrição do problema
 
-A proposta da Etapa 2 exige uma aplicação funcional relacionada ao projeto aprovado na Etapa 1. O site precisava ir além de uma página informativa, contendo um fluxo completo de interação com cadastro, login, loja fictícia, carrinho, inventário e envio de dúvidas.
+A etapa atual do trabalho precisava transformar a ideia aprovada em uma aplicação funcional. Por isso, o site combina conteúdo informativo sobre o universo do jogo com interações básicas feitas no navegador.
 
 ## Público-alvo
 
-O público-alvo são avaliadores, estudantes e pessoas interessadas em conhecer a proposta fictícia do jogo Infernal Dungeon por meio de uma interface web simples, funcional e responsiva.
+O projeto é voltado para os avaliadores do trabalho e para usuários que desejam conhecer a proposta do jogo Infernal Dungeon por meio de uma interface web simples e responsiva.
 
 ## Requisitos funcionais implementados
 
@@ -42,13 +42,13 @@ O público-alvo são avaliadores, estudantes e pessoas interessadas em conhecer 
 
 ## Fluxo principal da aplicação
 
-1. O usuário acessa a página inicial e navega pelas seções informativas da wiki.
-2. O usuário realiza cadastro informando nome, e-mail e senha.
-3. O usuário faz login com as credenciais cadastradas.
-4. O usuário acessa a loja e adiciona itens fictícios ao carrinho.
-5. O usuário remove itens do carrinho, se desejar.
+1. O usuário acessa a página inicial e navega pelas seções informativas.
+2. O usuário cria uma conta com nome, e-mail e senha.
+3. O usuário faz login com os dados cadastrados.
+4. O usuário acessa a loja e adiciona itens ao carrinho.
+5. O usuário remove itens do carrinho, se necessário.
 6. O usuário finaliza a compra fictícia.
-7. Os itens comprados são salvos no inventário individual do usuário.
+7. Os itens comprados aparecem no inventário do usuário logado.
 8. O usuário acessa a central de suporte.
 9. O usuário envia, edita e exclui dúvidas.
 10. O usuário pode encerrar a sessão com logout.
@@ -57,11 +57,10 @@ O público-alvo são avaliadores, estudantes e pessoas interessadas em conhecer 
 
 - HTML
 - CSS
-- JavaScript puro
+- JavaScript
 - LocalStorage
-- Git
-- GitHub
+- Git e GitHub
 
 ## Observação
 
-A aplicação não possui backend e não utiliza banco de dados real. O armazenamento é feito com LocalStorage por se tratar de uma entrega acadêmica funcional da Etapa 2.
+A aplicação não possui backend nem banco de dados real. Os dados ficam salvos no LocalStorage do navegador, o que atende ao funcionamento necessário para esta etapa do trabalho.

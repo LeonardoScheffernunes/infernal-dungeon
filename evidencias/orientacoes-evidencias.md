@@ -1,22 +1,18 @@
-# Orientações de Evidências
+# Evidências
 
-Depois da finalização do desenvolvimento, devem ser adicionados prints ou registros visuais das seguintes partes do projeto:
+Itens que ainda precisam ser colocados na pasta `evidencias`:
 
-- Tela inicial do sistema
-- Tela de cadastro
-- Login realizado
-- Loja com itens
-- Carrinho com item
-- Remoção de item do carrinho
-- Compra finalizada
-- Inventário com item comprado
-- FAQ
-- Envio de dúvida
-- Edição de dúvida
-- Exclusão de dúvida
-- Repositório GitHub
-- Histórico de commits
-- Site publicado no Netlify, se usado
-- Vídeo de demonstração
-
-O vídeo deve demonstrar o fluxo funcional completo da aplicação e ter até 10 minutos.
+- Print da tela inicial
+- Print do cadastro
+- Print do login
+- Print da loja
+- Print do carrinho
+- Print da compra finalizada
+- Print do inventário
+- Print do FAQ/suporte
+- Print do envio de dúvida
+- Print da edição de dúvida
+- Print da exclusão de dúvida
+- Print do GitHub
+- Print do histórico de commits
+- Link do vídeo de demonstração

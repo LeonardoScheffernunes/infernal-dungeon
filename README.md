@@ -1,52 +1,43 @@
 # Infernal Dungeon
 
-Wiki/site oficial fictício do jogo **Infernal Dungeon**, desenvolvido para a Etapa 2 do Trabalho Avaliativo.
-
 ## Integrantes
 
 - Leonardo Scheffer Nunes
 - Vinicius Cecatto
 
-## Descrição resumida
+## Sobre o projeto
 
-Infernal Dungeon é uma aplicação web em página única que apresenta o universo fictício de um jogo de tower defense com tema de dungeon. O jogador assume o papel de mestre de uma dungeon, protege um núcleo, constrói torres, recruta NPCs, utiliza máscaras especiais e invade dungeons controladas por NPCs.
+Infernal Dungeon é uma wiki/site fictício de apresentação de um jogo autoral de tower defense com tema de dungeon. A página apresenta o universo do jogo, a história, as dungeons, as máscaras, as torres, os NPCs, a loja, o inventário e a central de suporte.
 
-Além das seções informativas, o projeto possui fluxo funcional completo com cadastro, login, loja fictícia, carrinho, compra simulada, inventário e central de dúvidas.
+No jogo, o jogador assume o papel de mestre de uma dungeon e precisa proteger um núcleo. Para isso, pode construir torres, recrutar NPCs, usar máscaras com poderes especiais e invadir dungeons controladas por NPCs.
 
-## Objetivo do projeto
+## Objetivo
 
-Criar uma wiki/site oficial fictício para apresentar o jogo Infernal Dungeon e demonstrar funcionalidades básicas de uma aplicação web usando apenas HTML, CSS, JavaScript puro e LocalStorage.
+O objetivo do projeto é apresentar o universo de Infernal Dungeon e demonstrar um fluxo funcional simples de aplicação web, com cadastro, login, loja fictícia, carrinho, inventário e envio de dúvidas.
 
 ## Tecnologias utilizadas
 
 - HTML
 - CSS
-- JavaScript puro
+- JavaScript
 - LocalStorage
-- Git
-- GitHub
+- Git e GitHub
 
-## Funcionalidades implementadas
+## Funcionalidades
 
-- Navegação por seções em página única
+- Navegação por seções em uma única página
 - Seções informativas sobre história, dungeons, máscaras, torres e NPCs
-- Cadastro de usuário com validação de campos, e-mail simples e bloqueio de e-mail duplicado
-- Login e logout com persistência no LocalStorage
-- Exibição do usuário logado na interface
-- Loja fictícia com 8 itens
-- Carrinho com adição, remoção e cálculo de total
+- Cadastro de usuário com validação de campos
+- Login e logout
+- Loja fictícia com itens de diferentes tipos
+- Carrinho com adição e remoção de itens
 - Finalização de compra fictícia
 - Inventário individual por usuário
-- FAQ fixo
-- Envio, edição e exclusão de dúvidas por usuário logado
-- Persistência local usando as chaves:
-  - `infernalDungeon_users`
-  - `infernalDungeon_loggedUser`
-  - `infernalDungeon_cart`
-  - `infernalDungeon_inventory`
-  - `infernalDungeon_questions`
+- FAQ com perguntas frequentes
+- Envio, edição e exclusão de dúvidas
+- Armazenamento dos dados no navegador com LocalStorage
 
-## Estrutura de pastas
+## Estrutura do projeto
 
 ```text
 InfernalDungeon/
@@ -68,43 +59,28 @@ InfernalDungeon/
 └── netlify.toml
 ```
 
-## Execução local
+## Como executar
 
-Para executar localmente, basta abrir o arquivo abaixo no navegador:
+O projeto pode ser aberto diretamente pelo arquivo:
 
 ```text
 codigo-fonte/index.html
 ```
 
-Também é possível usar uma extensão como Live Server, caso o avaliador prefira navegar com um servidor local.
+Também é possível usar uma extensão como Live Server.
 
-## Publicação no Netlify
+## Site publicado
 
-O projeto já possui o arquivo `netlify.toml` configurado para publicar a pasta `codigo-fonte` sem comando de build.
+https://exquisite-crepe-ae5df0.netlify.app/
 
-Passos sugeridos:
+## Repositório
 
-1. Criar conta ou entrar no Netlify.
-2. Importar o repositório do GitHub.
-3. Deixar o build command vazio.
-4. Definir o publish directory como `codigo-fonte`.
-5. Publicar o site.
-6. Copiar o link publicado para este README.
+Repositório GitHub: https://github.com/LeonardoScheffernunes/infernal-dungeon
 
-Configuração utilizada:
+## Vídeo de demonstração
 
-```toml
-[build]
-  publish = "codigo-fonte"
-  command = ""
-```
-
-## Links
-
-- Link do repositório GitHub: preencher após criação/publicação
-- Link do site publicado no Netlify: preencher após publicação
-- Link do vídeo de demonstração: preencher após gravação
+Vídeo de demonstração: será adicionado após a gravação
 
 ## Observações
 
-Este projeto não usa React, backend, banco de dados real ou bibliotecas externas. Todos os dados funcionais são armazenados localmente no navegador com LocalStorage, conforme a proposta acadêmica da Etapa 2.
+O projeto não usa backend nem banco de dados real. Os dados de usuários, carrinho, inventário e dúvidas são armazenados no navegador com LocalStorage.

@@ -1,37 +1,39 @@
 # Interface
 
-## Descrição das principais interfaces
+## Visão geral
 
-O projeto Infernal Dungeon foi desenvolvido como uma aplicação de página única, com menu superior para navegação entre as seções. A interface utiliza tema escuro, cores infernais, cards, bordas douradas e organização visual inspirada em sites oficiais de jogos, sem copiar assets de jogos reais.
+A interface de Infernal Dungeon foi organizada como uma aplicação de página única. O menu superior leva o usuário para as seções Início, História, Dungeons, Máscaras, Torres, NPCs, Loja, Inventário, Suporte e Conta.
+
+O visual usa tema escuro, tons de vermelho, dourado e cinza, cards organizados e botões com aparência de jogo. A proposta é lembrar um site oficial de jogo dark fantasy, sem usar imagens ou marcas de jogos reais.
 
 ## Tela inicial
 
-A tela inicial apresenta o nome Infernal Dungeon, uma descrição curta do jogo fictício e botões de acesso rápido para a loja e para a criação de conta. Também há indicadores simples com informações do universo do jogo.
+A tela inicial apresenta o nome Infernal Dungeon, uma descrição curta do jogo e botões de acesso rápido para a loja e para a área de conta.
 
 ## Área de conta
 
-A área de conta contém dois formulários: cadastro e login. O cadastro solicita nome, e-mail e senha. O login solicita e-mail e senha. Após o login, o nome do usuário aparece na interface e o botão de logout fica disponível.
+A área de conta contém os formulários de cadastro e login. O cadastro solicita nome, e-mail e senha. O login solicita e-mail e senha. Quando o login é realizado, o nome do usuário aparece no topo da página e o botão de logout fica disponível.
 
 ## Loja
 
-A loja apresenta cards de itens fictícios, incluindo máscaras, skins, torres e pacotes de recursos. Cada card mostra nome, tipo, raridade, preço em Fragmentos Infernais, descrição e botão para adicionar ao carrinho.
+A loja exibe cards de itens fictícios, como máscaras, skins, torres e pacotes de recursos. Cada card mostra nome, tipo, raridade, preço em Fragmentos Infernais, descrição e botão para adicionar ao carrinho.
 
 ## Carrinho
 
-O carrinho fica na seção Loja. Ele mostra os itens adicionados pelo usuário logado, permite remoção de itens, calcula o total e possui botão para finalizar a compra fictícia.
+O carrinho fica dentro da seção Loja. Ele mostra os itens adicionados, permite remover itens, calcula o valor total e possui o botão de finalização da compra fictícia.
 
 ## Inventário
 
-O inventário exibe os itens comprados pelo usuário logado. Caso não haja usuário logado, a interface solicita login. Caso o usuário não tenha itens, uma mensagem informativa é exibida.
+O inventário mostra os itens comprados pelo usuário logado. Se não houver usuário logado, a seção informa que é necessário fazer login. Se o usuário não tiver itens, aparece uma mensagem simples informando que o inventário está vazio.
 
-## Suporte/FAQ
+## Suporte e FAQ
 
-A seção de suporte contém um FAQ fixo com perguntas frequentes e um formulário para envio de dúvidas. Usuários logados podem cadastrar, editar e excluir dúvidas, que são exibidas em uma lista individual.
+A seção Suporte possui perguntas frequentes sobre o jogo e um formulário para envio de dúvidas. Usuários logados podem cadastrar, editar e excluir suas próprias dúvidas.
 
-## Fluxo de navegação entre as seções
+## Fluxo de navegação
 
-O menu superior contém atalhos para Início, História, Dungeons, Máscaras, Torres, NPCs, Loja, Inventário, Suporte e Conta. A navegação ocorre por âncoras internas da página, mantendo a aplicação simples e funcional apenas com HTML, CSS e JavaScript.
+A navegação acontece por links internos do menu superior. Como a aplicação está em uma única página, o usuário consegue acessar as áreas principais sem trocar de arquivo ou depender de backend.
 
-## Observação sobre protótipos
+## Protótipo
 
-Os protótipos foram representados diretamente na interface desenvolvida. A organização das telas, cards, formulários e fluxos navegáveis já funciona como protótipo visual e versão funcional do sistema.
+Os protótipos foram representados diretamente na interface desenvolvida. Os cards, formulários, botões e áreas de conteúdo já fazem parte da versão funcional do site.
