@@ -3,7 +3,8 @@
 const storageKeys = {
   users: "infernalDungeon_users",
   loggedUser: "infernalDungeon_loggedUser",
-  cart: "infernalDungeon_cart"
+  cart: "infernalDungeon_cart",
+  inventory: "infernalDungeon_inventory"
 };
 
 const storeItems = [
@@ -91,7 +92,9 @@ const elements = {
   cartItems: document.querySelector("#cartItems"),
   cartCount: document.querySelector("#cartCount"),
   cartTotal: document.querySelector("#cartTotal"),
-  checkoutButton: document.querySelector("#checkoutButton")
+  checkoutButton: document.querySelector("#checkoutButton"),
+  inventoryMessage: document.querySelector("#inventoryMessage"),
+  inventoryItems: document.querySelector("#inventoryItems")
 };
 
 let loggedUser = readStorage(storageKeys.loggedUser, null);
@@ -125,6 +128,14 @@ function saveCartMap(cartMap) {
   writeStorage(storageKeys.cart, cartMap);
 }
 
+function getInventoryMap() {
+  return readStorage(storageKeys.inventory, {});
+}
+
+function saveInventoryMap(inventoryMap) {
+  writeStorage(storageKeys.inventory, inventoryMap);
+}
+
 function getCurrentCart() {
   if (!loggedUser) {
     return [];
@@ -142,6 +153,25 @@ function saveCurrentCart(cart) {
   const cartMap = getCartMap();
   cartMap[loggedUser.email] = cart;
   saveCartMap(cartMap);
+}
+
+function getCurrentInventory() {
+  if (!loggedUser) {
+    return [];
+  }
+
+  const inventoryMap = getInventoryMap();
+  return inventoryMap[loggedUser.email] || [];
+}
+
+function saveCurrentInventory(items) {
+  if (!loggedUser) {
+    return;
+  }
+
+  const inventoryMap = getInventoryMap();
+  inventoryMap[loggedUser.email] = items;
+  saveInventoryMap(inventoryMap);
 }
 
 function normalizeEmail(email) {
@@ -188,6 +218,7 @@ function renderAuthState() {
 
   elements.logoutButton.classList.toggle("hidden", !loggedUser);
   renderCart();
+  renderInventory();
 }
 
 function handleRegister(event) {
@@ -334,6 +365,41 @@ function renderCart() {
   }).join("");
 }
 
+function renderInventory() {
+  elements.inventoryItems.innerHTML = "";
+
+  if (!loggedUser) {
+    setMessage(elements.inventoryMessage, "Faça login para visualizar seu inventário.", "error");
+    return;
+  }
+
+  const inventory = getCurrentInventory();
+
+  if (inventory.length === 0) {
+    setMessage(elements.inventoryMessage, "Seu inventário ainda não possui itens comprados.", "");
+    return;
+  }
+
+  setMessage(elements.inventoryMessage, `${inventory.length} ${inventory.length === 1 ? "item salvo" : "itens salvos"} no inventário.`, "success");
+
+  elements.inventoryItems.innerHTML = inventory.map((item) => {
+    const purchasedAt = new Date(item.purchasedAt).toLocaleDateString("pt-BR");
+
+    return `
+      <article class="inventory-card">
+        <div class="meta-row">
+          <span class="type-badge">${item.type}</span>
+          <span class="rarity-badge">${item.rarity}</span>
+        </div>
+        <h3>${item.name}</h3>
+        <p>${item.description}</p>
+        <p><strong>Preço:</strong> ${formatCurrency(item.price)}</p>
+        <p><strong>Comprado em:</strong> ${purchasedAt}</p>
+      </article>
+    `;
+  }).join("");
+}
+
 function handleAddToCart(itemId) {
   if (!loggedUser) {
     setMessage(elements.storeMessage, "Faça login antes de adicionar itens ao carrinho.", "error");
@@ -371,9 +437,52 @@ function handleRemoveFromCart(index) {
   setMessage(elements.storeMessage, `${itemName} removido do carrinho.`, "success");
 }
 
+function handleCheckout() {
+  if (!loggedUser) {
+    setMessage(elements.storeMessage, "Faça login para finalizar a compra.", "error");
+    return;
+  }
+
+  const cart = getCurrentCart();
+
+  if (cart.length === 0) {
+    setMessage(elements.storeMessage, "Adicione pelo menos um item ao carrinho antes de finalizar.", "error");
+    return;
+  }
+
+  const purchasedItems = cart
+    .map((itemId, index) => {
+      const item = findStoreItem(itemId);
+
+      if (!item) {
+        return null;
+      }
+
+      return {
+        purchaseId: `purchase-${Date.now()}-${index}`,
+        itemId: item.id,
+        name: item.name,
+        type: item.type,
+        rarity: item.rarity,
+        price: item.price,
+        description: item.description,
+        purchasedAt: new Date().toISOString()
+      };
+    })
+    .filter(Boolean);
+
+  const inventory = getCurrentInventory();
+  saveCurrentInventory([...inventory, ...purchasedItems]);
+  saveCurrentCart([]);
+  renderCart();
+  renderInventory();
+  setMessage(elements.storeMessage, "Compra fictícia concluída. Os itens foram enviados para o inventário.", "success");
+}
+
 function initStore() {
   renderStoreItems();
   renderCart();
+  renderInventory();
 
   elements.storeItems.addEventListener("click", (event) => {
     const button = event.target.closest("[data-add-to-cart]");
@@ -390,6 +499,8 @@ function initStore() {
       handleRemoveFromCart(Number(button.dataset.removeCartIndex));
     }
   });
+
+  elements.checkoutButton.addEventListener("click", handleCheckout);
 }
 
 function initAuth() {
