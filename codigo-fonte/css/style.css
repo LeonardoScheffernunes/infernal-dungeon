@@ -209,6 +209,13 @@ h1 {
   transform: translateY(-1px);
 }
 
+.btn:disabled {
+  cursor: not-allowed;
+  filter: grayscale(0.6);
+  opacity: 0.55;
+  transform: none;
+}
+
 .btn-primary {
   border-color: rgba(213, 168, 75, 0.55);
   background: linear-gradient(135deg, var(--blood), #4f0d12);
